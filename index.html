@@ -9,29 +9,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
-      --navy:   #060B18;
-      --navy2:  #0D1B2A;
-      --amber:  #F59E0B;
-      --amber2: #FBBF24;
-      --green:  #52b788;
-      --red:    #EF4444;
-      --blue:   #3B82F6;
-      --pink:   #EC4899;
+      --bg:     #FFF9F0;
+      --bg2:    #FFF3E0;
+      --surface: #FFFFFF;
+      --amber:  #D97706;
+      --amber2: #F59E0B;
+      --amber-light: #FEF3C7;
+      --green:  #059669;
+      --green-light: #D1FAE5;
+      --red:    #DC2626;
+      --blue:   #2563EB;
+      --blue-light: #DBEAFE;
+      --pink:   #DB2777;
+      --pink-light: #FCE7F3;
+      --text:   #1C1917;
+      --text2:  #44403C;
+      --text3:  #78716C;
+      --border: rgba(0,0,0,0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--navy);
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Nunito', sans-serif;
       overflow-x: hidden;
     }
 
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 99px; }
 
     /* ── TYPOGRAPHY ── */
@@ -42,13 +51,13 @@
     body::before {
       content: '';
       position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0; opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.3;
     }
 
     /* ── DOT GRID ── */
     .dot-grid {
-      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
       background-size: 28px 28px;
     }
 
@@ -73,8 +82,8 @@
     }
     @keyframes spin-slow { to { transform: rotate(360deg); } }
     @keyframes pulse-glow {
-      0%,100% { box-shadow: 0 0 20px rgba(245,158,11,0.3); }
-      50%  { box-shadow: 0 0 50px rgba(245,158,11,0.7); }
+      0%,100% { box-shadow: 0 0 20px rgba(217,119,6,0.2); }
+      50%  { box-shadow: 0 0 50px rgba(217,119,6,0.5); }
     }
     @keyframes slide-up {
       from { opacity: 0; transform: translateY(40px); }
@@ -94,25 +103,16 @@
     @keyframes ping {
       75%,100% { transform: scale(2); opacity: 0; }
     }
-    @keyframes scanline {
-      0%   { transform: translateY(-100%); }
-      100% { transform: translateY(100vh); }
-    }
     @keyframes orb-move {
       0%,100% { transform: translate(0,0); }
       25%  { transform: translate(30px,-20px); }
       50%  { transform: translate(-20px,30px); }
       75%  { transform: translate(20px,10px); }
     }
-    @keyframes card-hover {
-      from { transform: perspective(800px) rotateY(0deg); }
-      to   { transform: perspective(800px) rotateY(5deg); }
-    }
     @keyframes reveal {
       from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes number-count { to { opacity: 1; } }
 
     .float-1 { animation: float 5s ease-in-out infinite; }
     .float-2 { animation: floatR 6s 1s ease-in-out infinite; }
@@ -124,27 +124,27 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       backdrop-filter: blur(20px);
-      background: rgba(6,11,24,0.85);
-      border-bottom: 1px solid rgba(245,158,11,0.15);
+      background: rgba(255,249,240,0.92);
+      border-bottom: 1px solid rgba(217,119,6,0.15);
       transition: all 0.3s ease;
     }
 
     /* ── HERO ── */
     .hero-gradient {
-      background: radial-gradient(ellipse at 20% 50%, rgba(245,158,11,0.12) 0%, transparent 60%),
-                  radial-gradient(ellipse at 80% 20%, rgba(82,183,136,0.08) 0%, transparent 50%),
-                  radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.06) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 20% 50%, rgba(245,158,11,0.10) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(5,150,105,0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 80%, rgba(37,99,235,0.05) 0%, transparent 50%);
     }
 
     /* ── AMBER GRADIENT TEXT ── */
     .text-gradient {
-      background: linear-gradient(135deg, var(--amber), var(--amber2), #fff8);
+      background: linear-gradient(135deg, var(--amber), var(--amber2), #b45309);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .text-gradient-green {
-      background: linear-gradient(135deg, var(--green), #86efac);
+      background: linear-gradient(135deg, var(--green), #10b981);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -152,29 +152,31 @@
 
     /* ── GLASS CARD ── */
     .glass {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(0,0,0,0.07);
       backdrop-filter: blur(12px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
     }
     .glass-amber {
-      background: rgba(245,158,11,0.08);
-      border: 1px solid rgba(245,158,11,0.25);
+      background: rgba(254,243,199,0.8);
+      border: 1px solid rgba(217,119,6,0.25);
     }
 
     /* ── SHIMMER BUTTON ── */
     .btn-shimmer {
       position: relative; overflow: hidden;
-      background: linear-gradient(135deg, var(--amber), #d97706);
+      background: linear-gradient(135deg, var(--amber2), var(--amber));
       transition: all 0.2s ease;
+      color: #fff;
     }
     .btn-shimmer::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
       background-size: 200% 100%;
       animation: shimmer 2.5s ease-in-out infinite;
     }
-    .btn-shimmer:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,158,11,0.5); }
+    .btn-shimmer:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(217,119,6,0.35); }
     .btn-shimmer:active { transform: translateY(1px); }
 
     /* ── SECTION REVEAL ── */
@@ -193,9 +195,6 @@
     .game-card:hover {
       transform: translateY(-8px) scale(1.03);
     }
-    .game-card:hover .game-accent-bar {
-      height: 4px;
-    }
 
     /* ── STAT NUMBER ── */
     .stat-num {
@@ -206,20 +205,19 @@
 
     /* ── IMAGE PLACEHOLDER ── */
     .img-placeholder {
-      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 2px dashed rgba(245,158,11,0.3);
+      background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.01));
+      border: 2px dashed rgba(217,119,6,0.3);
       border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      color: rgba(245,158,11,0.6);
+      color: rgba(217,119,6,0.6);
       font-family: 'Baloo 2', cursive;
       font-weight: 700;
       font-size: 13px;
       text-align: center;
-      /* padding: 20px; */
       position: relative;
       overflow: hidden;
     }
@@ -250,7 +248,7 @@
       position: fixed;
       width: 300px; height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 9999;
@@ -267,6 +265,19 @@
       transform: scaleX(0);
     }
     @keyframes grow { to { transform: scaleX(1); } }
+
+    /* ── CARD SHADOWS ── */
+    .card-shadow {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .card-shadow:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ── SECTION BG VARIANTS ── */
+    .section-tinted {
+      background: linear-gradient(135deg, rgba(254,243,199,0.5), rgba(255,249,240,0.8));
+    }
   </style>
 </head>
 <body class="dot-grid">
@@ -283,46 +294,43 @@
 
       <!-- Logo -->
       <div class="flex items-center gap-3">
-        <!-- LOGO PLACEHOLDER — Replace with <img src="logo.png" alt="MindSpark" class="h-9 w-auto" /> -->
         <div class="w-48 h-48 flex items-center justify-center ">
           <img src="logo.png" alt="">
         </div>
-        <span class="font-lilita text-xl tracking-wide">
-          <!-- Mind<span class="text-amber-400">Spark</span> -->
-        </span>
+        <span class="font-lilita text-xl tracking-wide text-stone-800"></span>
       </div>
 
       <!-- Desktop nav -->
       <div class="hidden md:flex items-center gap-8">
-        <a href="#about"    class="text-white/60 hover:text-amber-400 transition-colors text-sm font-bold tracking-wide">About</a>
-        <a href="#games"    class="text-white/60 hover:text-amber-400 transition-colors text-sm font-bold tracking-wide">Games</a>
-        <a href="#features" class="text-white/60 hover:text-amber-400 transition-colors text-sm font-bold tracking-wide">Features</a>
-        <a href="#science"  class="text-white/60 hover:text-amber-400 transition-colors text-sm font-bold tracking-wide">Research</a>
-        <a href="#contact"  class="text-white/60 hover:text-amber-400 transition-colors text-sm font-bold tracking-wide">Contact</a>
+        <a href="#about"    class="text-stone-500 hover:text-amber-600 transition-colors text-sm font-bold tracking-wide">About</a>
+        <a href="#games"    class="text-stone-500 hover:text-amber-600 transition-colors text-sm font-bold tracking-wide">Games</a>
+        <a href="#features" class="text-stone-500 hover:text-amber-600 transition-colors text-sm font-bold tracking-wide">Features</a>
+        <a href="#science"  class="text-stone-500 hover:text-amber-600 transition-colors text-sm font-bold tracking-wide">Research</a>
+        <a href="#contact"  class="text-stone-500 hover:text-amber-600 transition-colors text-sm font-bold tracking-wide">Contact</a>
       </div>
 
       <!-- CTA -->
-      <a href="#contact" class="hidden md:flex btn-shimmer text-navy font-baloo font-black text-sm px-5 py-2.5 rounded-full items-center gap-2">
+      <a href="#contact" class="hidden md:flex btn-shimmer font-baloo font-black text-sm px-5 py-2.5 rounded-full items-center gap-2 text-white">
         <i class="fas fa-play text-xs"></i>
         Book a Demo
       </a>
 
       <!-- Mobile menu button -->
-      <button id="menuBtn" class="md:hidden text-white/70 hover:text-amber-400 transition-colors">
+      <button id="menuBtn" class="md:hidden text-stone-500 hover:text-amber-600 transition-colors">
         <i class="fas fa-bars text-lg"></i>
       </button>
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-white/5">
-    <div class="px-4 py-4 flex flex-col gap-3">
-      <a href="#about"    class="text-white/70 hover:text-amber-400 transition-colors font-bold py-2">About</a>
-      <a href="#games"    class="text-white/70 hover:text-amber-400 transition-colors font-bold py-2">Games</a>
-      <a href="#features" class="text-white/70 hover:text-amber-400 transition-colors font-bold py-2">Features</a>
-      <a href="#science"  class="text-white/70 hover:text-amber-400 transition-colors font-bold py-2">Research</a>
-      <a href="#contact"  class="text-white/70 hover:text-amber-400 transition-colors font-bold py-2">Contact</a>
-      <a href="#contact"  class="btn-shimmer text-center text-navy font-baloo font-black text-sm px-5 py-3 rounded-full mt-2">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-stone-100">
+    <div class="px-4 py-4 flex flex-col gap-3 bg-white/95">
+      <a href="#about"    class="text-stone-600 hover:text-amber-600 transition-colors font-bold py-2">About</a>
+      <a href="#games"    class="text-stone-600 hover:text-amber-600 transition-colors font-bold py-2">Games</a>
+      <a href="#features" class="text-stone-600 hover:text-amber-600 transition-colors font-bold py-2">Features</a>
+      <a href="#science"  class="text-stone-600 hover:text-amber-600 transition-colors font-bold py-2">Research</a>
+      <a href="#contact"  class="text-stone-600 hover:text-amber-600 transition-colors font-bold py-2">Contact</a>
+      <a href="#contact"  class="btn-shimmer text-center text-white font-baloo font-black text-sm px-5 py-3 rounded-full mt-2">
         Book a Demo
       </a>
     </div>
@@ -336,30 +344,26 @@
 <section class="relative min-h-screen flex items-center overflow-hidden hero-gradient pt-16" id="hero">
 
   <!-- Background blobs -->
-  <div class="blob w-[600px] h-[600px] bg-amber-500/10 -top-40 -left-40 orb-anim" style="animation: orb-move 15s ease-in-out infinite;"></div>
-  <div class="blob w-[500px] h-[500px] bg-green-400/8 bottom-0 right-0" style="animation: orb-move 18s 3s ease-in-out infinite;"></div>
-  <div class="blob w-[300px] h-[300px] bg-blue-500/6 top-1/2 left-1/2" style="animation: orb-move 12s 6s ease-in-out infinite;"></div>
+  <div class="blob w-[600px] h-[600px] bg-amber-300/25 -top-40 -left-40" style="animation: orb-move 15s ease-in-out infinite;"></div>
+  <div class="blob w-[500px] h-[500px] bg-emerald-300/15 bottom-0 right-0" style="animation: orb-move 18s 3s ease-in-out infinite;"></div>
+  <div class="blob w-[300px] h-[300px] bg-blue-300/10 top-1/2 left-1/2" style="animation: orb-move 12s 6s ease-in-out infinite;"></div>
 
   <!-- Floating game icons — decorative -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <!-- Floating emojis / icons scattered -->
-    <div class="float-1 absolute top-[15%] left-[8%] text-4xl opacity-20">🎮</div>
-    <div class="float-2 absolute top-[25%] right-[6%] text-3xl opacity-15">🧠</div>
-    <div class="float-3 absolute bottom-[30%] left-[5%] text-2xl opacity-20">⚡</div>
-    <div class="float-4 absolute bottom-[20%] right-[8%] text-3xl opacity-15">🏆</div>
-    <div class="float-5 absolute top-[60%] left-[12%] text-2xl opacity-15">🎯</div>
-    <div class="float-1 absolute top-[10%] right-[20%] text-2xl opacity-10">✨</div>
-    <div class="float-3 absolute top-[45%] right-[4%] text-xl opacity-20">🔥</div>
-    <div class="float-2 absolute bottom-[10%] left-[30%] text-2xl opacity-10">💡</div>
+    <div class="float-1 absolute top-[15%] left-[8%] text-4xl opacity-30">🎮</div>
+    <div class="float-2 absolute top-[25%] right-[6%] text-3xl opacity-25">🧠</div>
+    <div class="float-3 absolute bottom-[30%] left-[5%] text-2xl opacity-30">⚡</div>
+    <div class="float-4 absolute bottom-[20%] right-[8%] text-3xl opacity-25">🏆</div>
+    <div class="float-5 absolute top-[60%] left-[12%] text-2xl opacity-25">🎯</div>
+    <div class="float-1 absolute top-[10%] right-[20%] text-2xl opacity-20">✨</div>
+    <div class="float-3 absolute top-[45%] right-[4%] text-xl opacity-25">🔥</div>
+    <div class="float-2 absolute bottom-[10%] left-[30%] text-2xl opacity-15">💡</div>
 
     <!-- Geometric shapes -->
-    <div class="float-1 absolute top-[20%] left-[18%] w-10 h-10 border-2 border-amber-400/20 rounded-xl rotate-12"></div>
-    <div class="float-3 absolute bottom-[25%] right-[15%] w-8 h-8 border-2 border-green-400/20 rounded-full"></div>
-    <div class="float-2 absolute top-[70%] left-[22%] w-6 h-6 bg-amber-400/10 rounded-lg rotate-45"></div>
-    <div class="float-4 absolute top-[35%] right-[18%] w-12 h-12 border border-blue-400/15 rounded-2xl"></div>
-
-    <!-- Scanline effect -->
-    <div style="position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px); pointer-events:none;"></div>
+    <div class="float-1 absolute top-[20%] left-[18%] w-10 h-10 border-2 border-amber-400/30 rounded-xl rotate-12"></div>
+    <div class="float-3 absolute bottom-[25%] right-[15%] w-8 h-8 border-2 border-emerald-400/25 rounded-full"></div>
+    <div class="float-2 absolute top-[70%] left-[22%] w-6 h-6 bg-amber-400/15 rounded-lg rotate-45"></div>
+    <div class="float-4 absolute top-[35%] right-[18%] w-12 h-12 border border-blue-400/20 rounded-2xl"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
@@ -370,35 +374,35 @@
         <!-- Eyebrow -->
         <div class="inline-flex items-center gap-2 glass-amber rounded-full px-4 py-2 mb-6">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" style="animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" style="animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
           </span>
-          <span class="font-baloo font-black text-amber-400 text-xs tracking-widest uppercase">Classroom Gaming Platform</span>
+          <span class="font-baloo font-black text-amber-700 text-xs tracking-widest uppercase">Classroom Gaming Platform</span>
         </div>
 
         <!-- Main headline -->
-      <h1 class="hero-title font-lilita leading-tight mb-6" style="font-size: clamp(2.8rem, 6vw, 4.5rem);">
-  Your Smartboard<br/>
-  <span class="text-gradient">Has More Potential</span><br/>
-  Than You Think.
-</h1>
-<p class="font-baloo font-bold text-2xl text-amber-400 mb-4" style="font-size: clamp(1.1rem, 3vw, 1.5rem);">
-  Are you using it to its fullest?
-</p>
+        <h1 class="hero-title font-lilita leading-tight mb-6 text-stone-900" style="font-size: clamp(2.8rem, 6vw, 4.5rem);">
+          Your Smartboard<br/>
+          <span class="text-gradient">Has More Potential</span><br/>
+          Than You Think.
+        </h1>
+        <p class="font-baloo font-bold text-2xl text-amber-600 mb-4" style="font-size: clamp(1.1rem, 3vw, 1.5rem);">
+          Are you using it to its fullest?
+        </p>
 
-        <p class="text-white/60 font-semibold text-lg leading-relaxed mb-8 max-w-lg">
+        <p class="text-stone-500 font-semibold text-lg leading-relaxed mb-8 max-w-lg">
           MindSpark turns any classroom smartboard into a live two-team game arena.
           No wifi needed. No tablets. No setup. Just press play.
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-wrap gap-4 mb-10">
-          <a href="#contact" class="btn-shimmer text-navy font-baloo font-black px-8 py-4 rounded-2xl flex items-center gap-3 text-lg">
+          <a href="#contact" class="btn-shimmer text-white font-baloo font-black px-8 py-4 rounded-2xl flex items-center gap-3 text-lg">
             <i class="fas fa-rocket"></i>
             Get a Free Demo
           </a>
-          <a href="#games" class="glass border border-white/15 hover:border-amber-400/40 text-white font-baloo font-bold px-8 py-4 rounded-2xl flex items-center gap-3 text-lg transition-all">
-            <i class="fas fa-gamepad text-amber-400"></i>
+          <a href="#games" class="bg-white/80 border border-stone-200 hover:border-amber-400/60 text-stone-700 font-baloo font-bold px-8 py-4 rounded-2xl flex items-center gap-3 text-lg transition-all hover:shadow-md card-shadow">
+            <i class="fas fa-gamepad text-amber-500"></i>
             See the Games
           </a>
         </div>
@@ -406,30 +410,30 @@
         <!-- Mini stats -->
         <div class="flex flex-wrap gap-6">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-amber-400/15 rounded-lg flex items-center justify-center">
-              <i class="fas fa-gamepad text-amber-400 text-xs"></i>
+            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-gamepad text-amber-600 text-xs"></i>
             </div>
             <div>
-              <div class="font-lilita text-white text-lg leading-none">10+</div>
-              <div class="text-white/40 text-xs font-bold">Games</div>
+              <div class="font-lilita text-stone-800 text-lg leading-none">10+</div>
+              <div class="text-stone-400 text-xs font-bold">Games</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-green-400/15 rounded-lg flex items-center justify-center">
-              <i class="fas fa-wifi-slash text-green-400 text-xs"></i>
+            <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-wifi-slash text-emerald-600 text-xs"></i>
             </div>
             <div>
-              <div class="font-lilita text-white text-lg leading-none">100%</div>
-              <div class="text-white/40 text-xs font-bold">Offline</div>
+              <div class="font-lilita text-stone-800 text-lg leading-none">100%</div>
+              <div class="text-stone-400 text-xs font-bold">Offline</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-400/15 rounded-lg flex items-center justify-center">
-              <i class="fas fa-graduation-cap text-blue-400 text-xs"></i>
+            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-blue-600 text-xs"></i>
             </div>
             <div>
-              <div class="font-lilita text-white text-lg leading-none">1–8</div>
-              <div class="text-white/40 text-xs font-bold">Classes</div>
+              <div class="font-lilita text-stone-800 text-lg leading-none">1–8</div>
+              <div class="text-stone-400 text-xs font-bold">Classes</div>
             </div>
           </div>
         </div>
@@ -437,35 +441,30 @@
 
       <!-- Right: Hero image -->
       <div class="relative" style="animation: slide-up 0.8s 0.2s ease both; opacity:0; animation-fill-mode: forwards;">
-        <!-- IMAGE PLACEHOLDER: Two students standing at a glowing smartboard, tapping opposite sides, 20+ classmates cheering behind them. Wide shot, warm Indian classroom, vibrant game UI visible on the smartboard. -->
-        <div class="img-placeholder w-full" >
+        <div class="img-placeholder w-full">
           <div>
             <img src="happy.png" alt="">
           </div>
         </div>
 
         <!-- Floating cards around the image -->
-        <div class="float-1 absolute -top-4 -right-4 glass-amber rounded-2xl px-4 py-3 flex items-center gap-3 hidden sm:flex">
+        <div class="float-1 absolute -top-4 -right-4 glass-amber rounded-2xl px-4 py-3 flex items-center gap-3 hidden sm:flex card-shadow">
           <div class="text-2xl">🏆</div>
-         
         </div>
 
-        <div class="float-2 absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 flex items-center gap-3 border border-green-400/30 hidden sm:flex">
-          <div class="w-8 h-8 bg-green-400/20 rounded-lg flex items-center justify-center">
-            <i class="fas fa-wifi text-green-400 text-xs"></i>
+        <div class="float-2 absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 border border-emerald-200 hidden sm:flex card-shadow">
+          <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+            <i class="fas fa-wifi text-emerald-600 text-xs"></i>
           </div>
           <div>
-            <div class="font-baloo font-black text-green-400 text-sm">Works Offline</div>
-            <div class="text-white/50 text-xs">No internet needed</div>
+            <div class="font-baloo font-black text-emerald-700 text-sm">Works Offline</div>
+            <div class="text-stone-400 text-xs">No internet needed</div>
           </div>
         </div>
       </div>
 
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  
 </section>
 
 
@@ -473,19 +472,19 @@
      PROBLEM → SOLUTION BAND
 ════════════════════════════════════════════════ -->
 <section class="relative py-16 overflow-hidden" id="about">
-  <div class="blob w-96 h-96 bg-amber-500/5 top-0 right-0"></div>
+  <div class="blob w-96 h-96 bg-amber-300/15 top-0 right-0"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section label -->
     <div class="text-center mb-12 reveal">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 border border-white/10">
-        <i class="fas fa-exclamation-triangle text-amber-400 text-xs"></i>
-        <span class="font-baloo font-black text-white/60 text-xs tracking-widest uppercase">The Problem</span>
+      <div class="inline-flex items-center gap-2 bg-red-50 rounded-full px-4 py-2 mb-4 border border-red-200">
+        <i class="fas fa-exclamation-triangle text-red-500 text-xs"></i>
+        <span class="font-baloo font-black text-red-500 text-xs tracking-widest uppercase">The Problem</span>
       </div>
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
+      <h2 class="font-lilita text-4xl lg:text-5xl mb-4 text-stone-900">
         Smartboards Are <span class="text-gradient">Collecting Dust</span>
       </h2>
-      <p class="text-white/50 font-semibold text-lg max-w-2xl mx-auto">
+      <p class="text-stone-500 font-semibold text-lg max-w-2xl mx-auto">
         Schools invest lakhs in smartboard technology. Most are used as glorified projectors.
       </p>
     </div>
@@ -494,202 +493,152 @@
     <div class="grid md:grid-cols-2 gap-6 mb-16 reveal">
 
       <!-- Problem -->
-      <div class="glass rounded-3xl p-8 border border-red-500/20">
-        <div class="w-12 h-12 bg-red-500/15 rounded-2xl flex items-center justify-center mb-6">
-          <i class="fas fa-times-circle text-red-400 text-xl"></i>
+      <div class="bg-white rounded-3xl p-8 border border-red-100 card-shadow">
+        <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-times-circle text-red-500 text-xl"></i>
         </div>
-        <h3 class="font-lilita text-2xl mb-4 text-red-300">Without MindSpark</h3>
+        <h3 class="font-lilita text-2xl mb-4 text-red-600">Without MindSpark</h3>
         <ul id="problem-list" class="space-y-3"></ul>
 
-<script>
-  const items = [
-    'Smartboard used only as a projector',
-    'Students passive, disengaged',
-    'Kahoot & Quizizz need individual phones',
-    'Wifi unreliable in classrooms',
-    'Revision feels like a chore'
-  ];
+        <script>
+          const items = [
+            'Smartboard used only as a projector',
+            'Students passive, disengaged',
+            'Kahoot & Quizizz need individual phones',
+            'Wifi unreliable in classrooms',
+            'Revision feels like a chore'
+          ];
+          const list = document.getElementById('problem-list');
+          list.innerHTML = items.map(item => `
+            <li class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-red-100 border border-red-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-times text-red-500" style="font-size:8px;"></i>
+              </div>
+              <span class="text-stone-500 font-semibold text-sm leading-relaxed">${item}</span>
+            </li>
+          `).join('');
+        </script>
 
-  const list = document.getElementById('problem-list');
-
-  list.innerHTML = items.map(item => `
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-red-500/20 border border-red-500/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-times text-red-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/60 font-semibold text-sm leading-relaxed">
-        ${item}
-      </span>
-    </li>
-  `).join('');
-</script>
-        <!-- IMAGE PLACEHOLDER: A blank/idle smartboard in a classroom, teacher pointing at it with a stick, no student interaction. Slightly desaturated mood. -->
         <div class="img-placeholder mt-6 h-66">
-         <img src="problem.png" alt="">
+          <img src="problem.png" alt="">
         </div>
       </div>
 
       <!-- Solution -->
-   <div class="rounded-3xl p-8 border border-amber-400/30" style="background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.03));">
-  <div class="w-12 h-12 bg-amber-400/15 rounded-2xl flex items-center justify-center mb-6">
-    <i class="fas fa-bolt text-amber-400 text-xl"></i>
-  </div>
-  <h3 class="font-lilita text-2xl mb-4 text-amber-300">With MindSpark</h3>
-  <ul class="space-y-3">
-
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-check text-amber-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/80 font-semibold text-sm leading-relaxed">Smartboard becomes a live game arena</span>
-    </li>
-
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-check text-amber-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/80 font-semibold text-sm leading-relaxed">Two teams compete — whole class cheers</span>
-    </li>
-
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-check text-amber-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/80 font-semibold text-sm leading-relaxed">No devices needed — one shared screen</span>
-    </li>
-
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-check text-amber-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/80 font-semibold text-sm leading-relaxed">Works 100% offline after first load</span>
-    </li>
-
-    <li class="flex items-start gap-3">
-      <div class="w-5 h-5 rounded-full bg-amber-400/20 border border-amber-400/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-        <i class="fas fa-check text-amber-400" style="font-size:8px;"></i>
-      </div>
-      <span class="text-white/80 font-semibold text-sm leading-relaxed">Students ask when they're playing again</span>
-    </li>
-
-  </ul>
-
-  <!-- IMAGE PLACEHOLDER: Two students at glowing smartboard, close-up of hands touching opposite sides of the split-screen. Their faces grinning. Bright, close-up. -->
-  <div class="img-placeholder mt-6 h-86">
-         <img src="hero.png" alt="">
+      <div class="rounded-3xl p-8 border border-amber-200 card-shadow" style="background: linear-gradient(135deg, rgba(254,243,199,0.6), rgba(255,255,255,0.9));">
+        <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
+          <i class="fas fa-bolt text-amber-600 text-xl"></i>
         </div>
-</div>
+        <h3 class="font-lilita text-2xl mb-4 text-amber-700">With MindSpark</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-amber-600" style="font-size:8px;"></i>
+            </div>
+            <span class="text-stone-700 font-semibold text-sm leading-relaxed">Smartboard becomes a live game arena</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-amber-600" style="font-size:8px;"></i>
+            </div>
+            <span class="text-stone-700 font-semibold text-sm leading-relaxed">Two teams compete — whole class cheers</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-amber-600" style="font-size:8px;"></i>
+            </div>
+            <span class="text-stone-700 font-semibold text-sm leading-relaxed">No devices needed — one shared screen</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-amber-600" style="font-size:8px;"></i>
+            </div>
+            <span class="text-stone-700 font-semibold text-sm leading-relaxed">Works 100% offline after first load</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fas fa-check text-amber-600" style="font-size:8px;"></i>
+            </div>
+            <span class="text-stone-700 font-semibold text-sm leading-relaxed">Students ask when they're playing again</span>
+          </li>
+        </ul>
+
+        <div class="img-placeholder mt-6 h-86">
+          <img src="hero.png" alt="">
+        </div>
+      </div>
     </div>
 
-    <!-- How it works — 4 steps -->
+    <!-- How it works -->
     <div class="text-center mb-10 reveal flex flex-col items-center">
-        <img src="logo2.png" width="320px" alt="">
-      <h2 class="font-lilita text-3xl lg:text-4xl">
+      <img src="logo2.png" width="320px" alt="">
+      <h2 class="font-lilita text-3xl lg:text-4xl text-stone-900">
         Ready in <span class="text-gradient">60 Seconds</span>
       </h2>
     </div>
 
     <!-- HOW IT WORKS GRID -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 reveal">
 
-  <div class="glass rounded-2xl p-5 text-center border border-white/8 hover:border-amber-400/30 transition-all group game-card">
-    <div class="font-lilita text-5xl text-white/5 group-hover:text-amber-400/10 transition-colors mb-2 leading-none">01</div>
-    <div class="w-10 h-10 bg-amber-400/15 rounded-xl flex items-center justify-center mx-auto mb-3">
-      <i class="fas fa-globe text-amber-400 text-sm"></i>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-1">Open MindSpark</div>
-    <div class="text-white/40 text-xs leading-relaxed font-semibold">Visit the URL on any classroom laptop — no login, no install</div>
-  </div>
-
-  <div class="glass rounded-2xl p-5 text-center border border-white/8 hover:border-green-400/30 transition-all group game-card">
-    <div class="font-lilita text-5xl text-white/5 group-hover:text-green-400/10 transition-colors mb-2 leading-none">02</div>
-    <div class="w-10 h-10 bg-green-400/15 rounded-xl flex items-center justify-center mx-auto mb-3">
-      <i class="fas fa-gamepad text-green-400 text-sm"></i>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-1">Pick a Game</div>
-    <div class="text-white/40 text-xs leading-relaxed font-semibold">Choose subject, class level, and set a timer</div>
-  </div>
-
-  <div class="glass rounded-2xl p-5 text-center border border-white/8 hover:border-blue-400/30 transition-all group game-card">
-    <div class="font-lilita text-5xl text-white/5 group-hover:text-blue-400/10 transition-colors mb-2 leading-none">03</div>
-    <div class="w-10 h-10 bg-blue-400/15 rounded-xl flex items-center justify-center mx-auto mb-3">
-      <i class="fas fa-users text-blue-400 text-sm"></i>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-1">Two Students Up</div>
-    <div class="text-white/40 text-xs leading-relaxed font-semibold">One per team at the board — each touches their half</div>
-  </div>
-
-  <div class="glass rounded-2xl p-5 text-center border border-white/8 hover:border-pink-400/30 transition-all group game-card">
-    <div class="font-lilita text-5xl text-white/5 group-hover:text-pink-400/10 transition-colors mb-2 leading-none">04</div>
-    <div class="w-10 h-10 bg-pink-400/15 rounded-xl flex items-center justify-center mx-auto mb-3">
-      <i class="fas fa-trophy text-pink-400 text-sm"></i>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-1">Class Plays!</div>
-    <div class="text-white/40 text-xs leading-relaxed font-semibold">Everyone watches, cheers, and learns together</div>
-  </div>
-
-</div>
-
-
-<!-- STATS BAND -->
-<!-- <div class="relative py-14 overflow-hidden" style="background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(82,183,136,0.05));">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
-
-      <div class="text-center group">
-        <div class="w-14 h-14 bg-amber-400/15 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-          <i class="fas fa-gamepad text-amber-400 text-xl"></i>
+      <div class="bg-white rounded-2xl p-5 text-center border border-stone-100 hover:border-amber-300 transition-all group game-card card-shadow">
+        <div class="font-lilita text-5xl text-stone-100 group-hover:text-amber-200 transition-colors mb-2 leading-none">01</div>
+        <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-globe text-amber-600 text-sm"></i>
         </div>
-        <div class="stat-num text-gradient mb-1">10+</div>
-        <div class="text-white/50 font-bold text-sm">Games Ready to Play</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1">Open MindSpark</div>
+        <div class="text-stone-400 text-xs leading-relaxed font-semibold">Visit the URL on any classroom laptop — no login, no install</div>
       </div>
 
-      <div class="text-center group">
-        <div class="w-14 h-14 bg-green-400/15 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-          <i class="fas fa-rupee-sign text-green-400 text-xl"></i>
+      <div class="bg-white rounded-2xl p-5 text-center border border-stone-100 hover:border-emerald-300 transition-all group game-card card-shadow">
+        <div class="font-lilita text-5xl text-stone-100 group-hover:text-emerald-200 transition-colors mb-2 leading-none">02</div>
+        <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-gamepad text-emerald-600 text-sm"></i>
         </div>
-        <div class="stat-num text-gradient mb-1">₹60</div>
-        <div class="text-white/50 font-bold text-sm">Per Student Per Year</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1">Pick a Game</div>
+        <div class="text-stone-400 text-xs leading-relaxed font-semibold">Choose subject, class level, and set a timer</div>
       </div>
 
-      <div class="text-center group">
-        <div class="w-14 h-14 bg-blue-400/15 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-          <i class="fas fa-graduation-cap text-blue-400 text-xl"></i>
+      <div class="bg-white rounded-2xl p-5 text-center border border-stone-100 hover:border-blue-300 transition-all group game-card card-shadow">
+        <div class="font-lilita text-5xl text-stone-100 group-hover:text-blue-200 transition-colors mb-2 leading-none">03</div>
+        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-users text-blue-600 text-sm"></i>
         </div>
-        <div class="stat-num text-gradient mb-1">4</div>
-        <div class="text-white/50 font-bold text-sm">Class Levels (1–8)</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1">Two Students Up</div>
+        <div class="text-stone-400 text-xs leading-relaxed font-semibold">One per team at the board — each touches their half</div>
       </div>
 
-      <div class="text-center group">
-        <div class="w-14 h-14 bg-pink-400/15 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-          <i class="fas fa-wifi text-pink-400 text-xl"></i>
+      <div class="bg-white rounded-2xl p-5 text-center border border-stone-100 hover:border-pink-300 transition-all group game-card card-shadow">
+        <div class="font-lilita text-5xl text-stone-100 group-hover:text-pink-200 transition-colors mb-2 leading-none">04</div>
+        <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-trophy text-pink-600 text-sm"></i>
         </div>
-        <div class="stat-num text-gradient mb-1">0</div>
-        <div class="text-white/50 font-bold text-sm">Internet Needed in Class</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1">Class Plays!</div>
+        <div class="text-stone-400 text-xs leading-relaxed font-semibold">Everyone watches, cheers, and learns together</div>
       </div>
 
     </div>
   </div>
-</div> -->
+</section>
+
 
 <!-- ═══════════════════════════════════════════════
      GAMES SHOWCASE
 ════════════════════════════════════════════════ -->
-<section class="relative py-20 overflow-hidden" id="games">
-  <div class="blob w-96 h-96 bg-green-400/6 bottom-0 left-0"></div>
-  <div class="blob w-80 h-80 bg-blue-400/5 top-20 right-0"></div>
+<section class="relative py-20 overflow-hidden section-tinted" id="games">
+  <div class="blob w-96 h-96 bg-emerald-300/12 bottom-0 left-0"></div>
+  <div class="blob w-80 h-80 bg-blue-300/10 top-20 right-0"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 border border-green-400/20">
-        <i class="fas fa-gamepad text-green-400 text-xs"></i>
-        <span class="font-baloo font-black text-green-400 text-xs tracking-widest uppercase">The Game Library</span>
+      <div class="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-4 border border-emerald-200">
+        <i class="fas fa-gamepad text-emerald-600 text-xs"></i>
+        <span class="font-baloo font-black text-emerald-700 text-xs tracking-widest uppercase">The Game Library</span>
       </div>
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
+      <h2 class="font-lilita text-4xl lg:text-5xl mb-4 text-stone-900">
         Games for <span class="text-gradient-green">Every Subject.</span>
       </h2>
-      <p class="text-white/50 font-semibold text-lg max-w-xl mx-auto">
+      <p class="text-stone-500 font-semibold text-lg max-w-xl mx-auto">
         From 3D runners to food chain builders — each game is a different mechanic so students never get bored.
       </p>
     </div>
@@ -698,25 +647,24 @@
     <div class="grid lg:grid-cols-5 gap-6 mb-6 reveal">
 
       <!-- Big card: Track Rush -->
-      <div class="lg:col-span-3 game-card glass rounded-3xl overflow-hidden border border-amber-400/20 hover:border-amber-400/50 cursor-pointer" style="min-height: 320px;">
-        <!-- IMAGE PLACEHOLDER: 3D track game screenshot — cartoon character running toward three glowing hologram portals with answer options on them. Isometric track view, moving trees on sides. Toony, vibrant. -->
-        <div class="img-placeholder h-88 rounded-none border-0 border-b border-amber-400/15">
+      <div class="lg:col-span-3 game-card bg-white rounded-3xl overflow-hidden border border-amber-200 hover:border-amber-400 cursor-pointer card-shadow" style="min-height: 320px;">
+        <div class="img-placeholder h-88 rounded-none border-0 border-b border-amber-100">
           <img src="trackrush.png" alt="">
         </div>
         <div class="p-6">
           <div class="flex items-start justify-between mb-3">
             <div>
               <div class="flex items-center gap-2 mb-1">
-                <span class="text-xs font-black bg-amber-400/15 text-amber-400 px-3 py-1 rounded-full border border-amber-400/30">General Knowledge</span>
-                <span class="text-xs font-black bg-white/5 text-white/40 px-3 py-1 rounded-full border border-white/10">3D Game</span>
+                <span class="text-xs font-black bg-amber-100 text-amber-700 px-3 py-1 rounded-full border border-amber-200">General Knowledge</span>
+                <span class="text-xs font-black bg-stone-100 text-stone-500 px-3 py-1 rounded-full border border-stone-200">3D Game</span>
               </div>
-              <h3 class="font-lilita text-2xl">🏃 Track Rush</h3>
+              <h3 class="font-lilita text-2xl text-stone-800">🏃 Track Rush</h3>
             </div>
-            <div class="w-10 h-10 bg-amber-400/15 rounded-xl flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-arrow-right text-amber-400 text-sm"></i>
+            <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-arrow-right text-amber-600 text-sm"></i>
             </div>
           </div>
-          <p class="text-white/50 font-semibold text-sm leading-relaxed">
+          <p class="text-stone-500 font-semibold text-sm leading-relaxed">
             Swipe to change lanes and run through the correct answer portal before it passes. Each player's options appear in different order — no copying!
           </p>
         </div>
@@ -725,181 +673,171 @@
       <!-- Two stacked: right side -->
       <div class="lg:col-span-2 flex flex-col gap-6">
 
-        <div class="game-card glass rounded-3xl p-6 border border-pink-400/20 hover:border-pink-400/50 cursor-pointer flex-1">
+        <div class="game-card bg-white rounded-3xl p-6 border border-pink-100 hover:border-pink-300 cursor-pointer flex-1 card-shadow">
           <div class="flex items-center gap-4 mb-3">
-            <div class="w-12 h-12 bg-pink-400/15 rounded-2xl flex items-center justify-center flex-shrink-0 text-xl">🎈</div>
+            <div class="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center flex-shrink-0 text-xl">🎈</div>
             <div>
-              <div class="font-lilita text-lg">Balloon Battle</div>
-              <span class="text-xs font-black text-pink-400">Mathematics</span>
+              <div class="font-lilita text-lg text-stone-800">Balloon Battle</div>
+              <span class="text-xs font-black text-pink-600">Mathematics</span>
             </div>
           </div>
-          <!-- IMAGE PLACEHOLDER: Split-screen with red & blue balloons, one mid-pop with confetti -->
-          <div class="img-placeholder h-44 border-pink-400/20" style="background: rgba(236,72,153,0.04);">
+          <div class="img-placeholder h-44 border-pink-200" style="background: rgba(253,242,248,0.5);">
             <img src="balloonbattle.png" alt="">
           </div>
-          <p class="text-white/40 text-xs font-semibold mt-3 leading-relaxed">Answer correctly to pop opponent's balloon. Wrong answer loses yours. 3 lives each.</p>
+          <p class="text-stone-400 text-xs font-semibold mt-3 leading-relaxed">Answer correctly to pop opponent's balloon. Wrong answer loses yours. 3 lives each.</p>
         </div>
 
-        <div class="game-card glass rounded-3xl p-6 border border-green-400/20 hover:border-green-400/50 cursor-pointer flex-1">
+        <div class="game-card bg-white rounded-3xl p-6 border border-emerald-100 hover:border-emerald-300 cursor-pointer flex-1 card-shadow">
           <div class="flex items-center gap-4 mb-3">
-            <div class="w-12 h-12 bg-green-400/15 rounded-2xl flex items-center justify-center flex-shrink-0 text-xl">🦎</div>
+            <div class="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0 text-xl">🦎</div>
             <div>
-              <div class="font-lilita text-lg">Chameleon Catch</div>
-              <span class="text-xs font-black text-green-400">English · Science · Maths</span>
+              <div class="font-lilita text-lg text-stone-800">Chameleon Catch</div>
+              <span class="text-xs font-black text-emerald-700">English · Science · Maths</span>
             </div>
           </div>
-          <!-- IMAGE PLACEHOLDER: Green chameleon on branch, tongue extended toward a flying bug with a word label on it. Lush jungle background. -->
-          <div class="img-placeholder h-44 border-green-400/20" style="background: rgba(82,183,136,0.04);">
+          <div class="img-placeholder h-44 border-emerald-200" style="background: rgba(240,253,244,0.5);">
             <img src="chameleoncatch.png" alt="">
           </div>
-          <p class="text-white/40 text-xs font-semibold mt-3 leading-relaxed">Tap the correct bugs — chameleon flicks its tongue to catch them. 5 subjects in one game.</p>
+          <p class="text-stone-400 text-xs font-semibold mt-3 leading-relaxed">Tap the correct bugs — chameleon flicks its tongue to catch them. 5 subjects in one game.</p>
         </div>
 
       </div>
     </div>
 
     <!-- Game grid: remaining games -->
-<!-- GAMES GRID -->
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 reveal">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 reveal">
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-indigo-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🧠</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-indigo-300 transition-colors">Memory Matrix</div>
-    <div class="text-xs font-black text-indigo-400 mb-2 uppercase tracking-wide">Brain</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Pattern recall — tiles light up, replicate from memory</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--indigo), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-indigo-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🧠</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-indigo-600 transition-colors">Memory Matrix</div>
+        <div class="text-xs font-black text-indigo-500 mb-2 uppercase tracking-wide">Brain</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Pattern recall — tiles light up, replicate from memory</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-orange-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🔍</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-orange-300 transition-colors">Spot It!</div>
-    <div class="text-xs font-black text-orange-400 mb-2 uppercase tracking-wide">General</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Find the matching image faster than your opponent</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--orange), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-orange-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🔍</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-orange-600 transition-colors">Spot It!</div>
+        <div class="text-xs font-black text-orange-500 mb-2 uppercase tracking-wide">General</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Find the matching image faster than your opponent</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-teal-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🦁</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-teal-300 transition-colors">Spell It!</div>
-    <div class="text-xs font-black text-teal-400 mb-2 uppercase tracking-wide">English</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">See the animal. Fill in the blanked letters</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--teal), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-teal-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🦁</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-teal-600 transition-colors">Spell It!</div>
+        <div class="text-xs font-black text-teal-600 mb-2 uppercase tracking-wide">English</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">See the animal. Fill in the blanked letters</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-violet-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🌉</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-violet-300 transition-colors">Grammar Bridge</div>
-    <div class="text-xs font-black text-violet-400 mb-2 uppercase tracking-wide">English</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Fill blanks to build bridge blocks. First to cross wins</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--violet), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-violet-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🌉</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-violet-600 transition-colors">Grammar Bridge</div>
+        <div class="text-xs font-black text-violet-500 mb-2 uppercase tracking-wide">English</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Fill blanks to build bridge blocks. First to cross wins</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-green-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🐸</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-green-300 transition-colors">Frog Catch</div>
-    <div class="text-xs font-black text-green-400 mb-2 uppercase tracking-wide">Maths</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">3D frogs jump in a pond — net them with correct answers</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--green), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-emerald-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🐸</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-emerald-600 transition-colors">Frog Catch</div>
+        <div class="text-xs font-black text-emerald-600 mb-2 uppercase tracking-wide">Maths</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">3D frogs jump in a pond — net them with correct answers</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-red-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🧟</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-red-300 transition-colors">Zombie Blast</div>
-    <div class="text-xs font-black text-red-400 mb-2 uppercase tracking-wide">Maths</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Zombies advance — blast them with correct maths answers</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--red), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-red-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🧟</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-red-600 transition-colors">Zombie Blast</div>
+        <div class="text-xs font-black text-red-500 mb-2 uppercase tracking-wide">Maths</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Zombies advance — blast them with correct maths answers</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-emerald-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🌿</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-emerald-300 transition-colors">Food Chain</div>
-    <div class="text-xs font-black text-emerald-400 mb-2 uppercase tracking-wide">Science</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Build the chain across forest, ocean, desert & grassland</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--emerald), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-green-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🌿</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-green-600 transition-colors">Food Chain</div>
+        <div class="text-xs font-black text-green-600 mb-2 uppercase tracking-wide">Science</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Build the chain across forest, ocean, desert & grassland</div>
+      </div>
 
-  <div class="game-card glass rounded-2xl p-4 border border-white/8 hover:border-purple-400/40 cursor-pointer group">
-    <div class="text-3xl mb-3">🗺️</div>
-    <div class="font-baloo font-black text-white text-sm mb-1 group-hover:text-purple-300 transition-colors">Map Master</div>
-    <div class="text-xs font-black text-purple-400 mb-2 uppercase tracking-wide">Geography</div>
-    <div class="text-white/35 text-xs font-semibold leading-relaxed">Drag Indian state labels to their correct positions</div>
-    <div class="game-accent-bar mt-3 w-full h-0.5 rounded-full transition-all duration-300" style="background: linear-gradient(90deg, var(--purple), transparent);"></div>
-  </div>
+      <div class="game-card bg-white rounded-2xl p-4 border border-stone-100 hover:border-purple-300 cursor-pointer group card-shadow">
+        <div class="text-3xl mb-3">🗺️</div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-1 group-hover:text-purple-600 transition-colors">Map Master</div>
+        <div class="text-xs font-black text-purple-500 mb-2 uppercase tracking-wide">Geography</div>
+        <div class="text-stone-400 text-xs font-semibold leading-relaxed">Drag Indian state labels to their correct positions</div>
+      </div>
 
-</div>
+    </div>
 
-
-<!-- SCROLLING MARQUEE -->
-<div class="py-6 overflow-hidden border-y border-white/5 mt-6" style="background: rgba(245,158,11,0.04);">
-  <div class="flex overflow-hidden">
-    <div class="marquee-track gap-8">
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🎮 Game-Based Learning</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">⚡ Offline First</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🏆 Team Competition</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🧠 Memory Matrix</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🦎 Chameleon Catch</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🏃 Track Rush</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🐸 Frog Catch</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🧟 Zombie Blast</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🌿 Food Chain</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🎈 Balloon Battle</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">📚 Curriculum-Aligned</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">✨ No Installation</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🎮 Game-Based Learning</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">⚡ Offline First</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🏆 Team Competition</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🧠 Memory Matrix</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🦎 Chameleon Catch</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🏃 Track Rush</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🐸 Frog Catch</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🧟 Zombie Blast</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🌿 Food Chain</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">🎈 Balloon Battle</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">📚 Curriculum-Aligned</span>
-      <span class="text-amber-400/40 font-black">·</span>
-      <span class="font-baloo font-black text-white/30 text-sm whitespace-nowrap px-4">✨ No Installation</span>
+    <!-- SCROLLING MARQUEE -->
+    <div class="py-6 overflow-hidden border-y border-stone-200 mt-6" style="background: rgba(254,243,199,0.3);">
+      <div class="flex overflow-hidden">
+        <div class="marquee-track gap-8">
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🎮 Game-Based Learning</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">⚡ Offline First</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🏆 Team Competition</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🧠 Memory Matrix</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🦎 Chameleon Catch</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🏃 Track Rush</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🐸 Frog Catch</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🧟 Zombie Blast</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🌿 Food Chain</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🎈 Balloon Battle</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">📚 Curriculum-Aligned</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">✨ No Installation</span>
+          <span class="text-amber-400 font-black">·</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🎮 Game-Based Learning</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">⚡ Offline First</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🏆 Team Competition</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🧠 Memory Matrix</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🦎 Chameleon Catch</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🏃 Track Rush</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🐸 Frog Catch</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🧟 Zombie Blast</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🌿 Food Chain</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">🎈 Balloon Battle</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">📚 Curriculum-Aligned</span>
+          <span class="text-amber-400 font-black">·</span>
+          <span class="font-baloo font-black text-stone-400 text-sm whitespace-nowrap px-4">✨ No Installation</span>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 
 <!-- ═══════════════════════════════════════════════
      FEATURES GRID
 ════════════════════════════════════════════════ -->
 <section class="relative py-20 overflow-hidden" id="features">
-  <div class="blob w-96 h-96 bg-amber-500/6 top-10 left-0"></div>
+  <div class="blob w-96 h-96 bg-amber-300/15 top-10 left-0"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 border border-amber-400/20">
-        <i class="fas fa-star text-amber-400 text-xs"></i>
-        <span class="font-baloo font-black text-amber-400 text-xs tracking-widest uppercase">Platform Features</span>
+      <div class="inline-flex items-center gap-2 bg-amber-50 rounded-full px-4 py-2 mb-4 border border-amber-200">
+        <i class="fas fa-star text-amber-500 text-xs"></i>
+        <span class="font-baloo font-black text-amber-700 text-xs tracking-widest uppercase">Platform Features</span>
       </div>
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
+      <h2 class="font-lilita text-4xl lg:text-5xl mb-4 text-stone-900">
         Built for <span class="text-gradient">Real Classrooms</span>
       </h2>
     </div>
@@ -908,76 +846,71 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
 
       <!-- Large: Offline first -->
-      <div class="md:col-span-2 lg:col-span-1 glass rounded-3xl p-7 border border-green-400/20 hover:border-green-400/40 transition-all">
-        <div class="w-14 h-14 bg-green-400/15 rounded-2xl flex items-center justify-center mb-5">
-          <i class="fas fa-wifi text-green-400 text-xl"></i>
+      <div class="md:col-span-2 lg:col-span-1 bg-white rounded-3xl p-7 border border-emerald-100 hover:border-emerald-300 transition-all card-shadow">
+        <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-5">
+          <i class="fas fa-wifi text-emerald-600 text-xl"></i>
         </div>
-        <h3 class="font-lilita text-2xl mb-3">100% Offline</h3>
-        <p class="text-white/50 font-semibold text-sm leading-relaxed mb-5">
+        <h3 class="font-lilita text-2xl mb-3 text-stone-900">100% Offline</h3>
+        <p class="text-stone-500 font-semibold text-sm leading-relaxed mb-5">
           Works without internet after first load. Perfect for classrooms with unreliable or no wifi. Load once — play forever.
         </p>
-        <!-- Offline indicator visual -->
-        
       </div>
 
       <!-- Custom questions -->
-      <div class="glass rounded-3xl p-7 border border-amber-400/20 hover:border-amber-400/40 transition-all">
-        <div class="w-14 h-14 bg-amber-400/15 rounded-2xl flex items-center justify-center mb-5">
-          <i class="fas fa-pen-to-square text-amber-400 text-xl"></i>
+      <div class="bg-white rounded-3xl p-7 border border-amber-100 hover:border-amber-300 transition-all card-shadow">
+        <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-5">
+          <i class="fas fa-pen-to-square text-amber-600 text-xl"></i>
         </div>
-        <h3 class="font-lilita text-2xl mb-3">Teacher App</h3>
-        <p class="text-white/50 font-semibold text-sm leading-relaxed mb-4">
+        <h3 class="font-lilita text-2xl mb-3 text-stone-900">Teacher App</h3>
+        <p class="text-stone-500 font-semibold text-sm leading-relaxed mb-4">
           Create custom question packs on your phone. Syncs to the smartboard silently — plays offline in class.
         </p>
-        <!-- IMAGE PLACEHOLDER: Teacher (woman, Indian, mid-30s) in staffroom holding phone showing question creation form. Warm, relaxed. -->
-        
       </div>
 
       <!-- No setup -->
-    <div class="glass rounded-3xl p-7 border border-blue-400/20 hover:border-blue-400/40 transition-all">
-  <div class="w-14 h-14 bg-blue-400/15 rounded-2xl flex items-center justify-center mb-5">
-    <i class="fas fa-bolt text-blue-400 text-xl"></i>
-  </div>
-  <h3 class="font-lilita text-2xl mb-3">Zero Setup</h3>
-  <p class="text-white/50 font-semibold text-sm leading-relaxed mb-4">
-    Open a browser. Visit the link. Press start. Under 60 seconds from opening to playing — no IT department required.
-  </p>
-  <!-- Steps visual -->
-  <div class="flex items-center gap-2">
-    <div class="flex-1 glass rounded-xl p-2 text-center border border-blue-400/15">
-      <div class="font-baloo font-black text-blue-400 text-xs">Open URL</div>
-    </div>
-    <i class="fas fa-arrow-right text-white/20 text-xs flex-shrink-0"></i>
-    <div class="flex-1 glass rounded-xl p-2 text-center border border-blue-400/15">
-      <div class="font-baloo font-black text-blue-400 text-xs">Pick Game</div>
-    </div>
-    <i class="fas fa-arrow-right text-white/20 text-xs flex-shrink-0"></i>
-    <div class="flex-1 glass rounded-xl p-2 text-center border border-blue-400/15">
-      <div class="font-baloo font-black text-blue-400 text-xs">▶ Start</div>
-    </div>
-  </div>
-</div>
+      <div class="bg-white rounded-3xl p-7 border border-blue-100 hover:border-blue-300 transition-all card-shadow">
+        <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-5">
+          <i class="fas fa-bolt text-blue-600 text-xl"></i>
+        </div>
+        <h3 class="font-lilita text-2xl mb-3 text-stone-900">Zero Setup</h3>
+        <p class="text-stone-500 font-semibold text-sm leading-relaxed mb-4">
+          Open a browser. Visit the link. Press start. Under 60 seconds from opening to playing — no IT department required.
+        </p>
+        <!-- Steps visual -->
+        <div class="flex items-center gap-2">
+          <div class="flex-1 bg-blue-50 rounded-xl p-2 text-center border border-blue-200">
+            <div class="font-baloo font-black text-blue-600 text-xs">Open URL</div>
+          </div>
+          <i class="fas fa-arrow-right text-stone-300 text-xs flex-shrink-0"></i>
+          <div class="flex-1 bg-blue-50 rounded-xl p-2 text-center border border-blue-200">
+            <div class="font-baloo font-black text-blue-600 text-xs">Pick Game</div>
+          </div>
+          <i class="fas fa-arrow-right text-stone-300 text-xs flex-shrink-0"></i>
+          <div class="flex-1 bg-blue-50 rounded-xl p-2 text-center border border-blue-200">
+            <div class="font-baloo font-black text-blue-600 text-xs">▶ Start</div>
+          </div>
+        </div>
+      </div>
 
       <!-- School library -->
-      <div class="glass rounded-3xl p-7 border border-purple-400/20 hover:border-purple-400/40 transition-all">
-        <div class="w-14 h-14 bg-purple-400/15 rounded-2xl flex items-center justify-center mb-5">
-          <i class="fas fa-book-open text-purple-400 text-xl"></i>
+      <div class="bg-white rounded-3xl p-7 border border-purple-100 hover:border-purple-300 transition-all card-shadow">
+        <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-5">
+          <i class="fas fa-book-open text-purple-600 text-xl"></i>
         </div>
-        <h3 class="font-lilita text-2xl mb-3">School Question Library</h3>
-        <p class="text-white/50 font-semibold text-sm leading-relaxed">
+        <h3 class="font-lilita text-2xl mb-3 text-stone-900">School Question Library</h3>
+        <p class="text-stone-500 font-semibold text-sm leading-relaxed">
           All teacher-created packs are shared across the school. Every teacher contributes — every teacher benefits. A growing collaborative question bank.
         </p>
       </div>
 
       <!-- Large: visual -->
-      <div class="md:col-span-2 lg:col-span-2 glass rounded-3xl overflow-hidden border border-pink-400/20 hover:border-pink-400/40 transition-all">
-        <!-- IMAGE PLACEHOLDER: Full classroom shot from front — all 25+ students looking at glowing smartboard. Teacher stands to side, smiling with pride. Golden hour light. The smartboard is the brightest thing in the frame. -->
-        <div class="img-placeholder h-88 rounded-none border-0 border-b border-pink-400/15">
+      <div class="md:col-span-2 lg:col-span-2 bg-white rounded-3xl overflow-hidden border border-pink-100 hover:border-pink-300 transition-all card-shadow">
+        <div class="img-placeholder h-88 rounded-none border-0 border-b border-pink-100">
           <img src="solution.png" alt="">
         </div>
         <div class="p-7">
-          <h3 class="font-lilita text-2xl mb-2">One Screen. Whole Class.</h3>
-          <p class="text-white/50 font-semibold text-sm leading-relaxed">
+          <h3 class="font-lilita text-2xl mb-2 text-stone-900">One Screen. Whole Class.</h3>
+          <p class="text-stone-500 font-semibold text-sm leading-relaxed">
             Designed for the shared display that already exists in every classroom. Not everyone needs a device — just two players at the board, and everyone else playing along.
           </p>
         </div>
@@ -991,107 +924,83 @@
 <!-- ═══════════════════════════════════════════════
      BRAIN SCIENCE
 ════════════════════════════════════════════════ -->
-<section class="relative py-20 overflow-hidden" id="science" style="background: linear-gradient(180deg, transparent, rgba(82,183,136,0.04), transparent);">
-  <div class="blob w-96 h-96 bg-green-400/5 top-0 right-20"></div>
+<section class="relative py-20 overflow-hidden section-tinted" id="science">
+  <div class="blob w-96 h-96 bg-emerald-300/12 top-0 right-20"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 border border-green-400/20">
-        <i class="fas fa-flask text-green-400 text-xs"></i>
-        <span class="font-baloo font-black text-green-400 text-xs tracking-widest uppercase">The Research</span>
+      <div class="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-2 mb-4 border border-emerald-200">
+        <i class="fas fa-flask text-emerald-600 text-xs"></i>
+        <span class="font-baloo font-black text-emerald-700 text-xs tracking-widest uppercase">The Research</span>
       </div>
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
+      <h2 class="font-lilita text-4xl lg:text-5xl mb-4 text-stone-900">
         Play Is the <span class="text-gradient-green">Best Teacher</span>
       </h2>
-      <p class="text-white/50 font-semibold text-lg max-w-2xl mx-auto">
+      <p class="text-stone-500 font-semibold text-lg max-w-2xl mx-auto">
         Decades of research confirm: game-based learning isn't a break from education — it IS education.
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12 reveal">
 
-  <!-- <div class="glass rounded-2xl p-6 border border-purple-400/15 hover:border-purple-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-purple-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-brain text-purple-400 text-sm"></i>
+      <div class="bg-white rounded-2xl p-6 border border-blue-100 hover:border-blue-300 transition-all group card-shadow">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+            <i class="fas fa-eye text-blue-600 text-sm"></i>
+          </div>
+          <div class="font-lilita text-2xl text-blue-600 text-right">↑ Focus</div>
+        </div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-2">Sustained Attention</div>
+        <p class="text-stone-400 text-xs font-semibold leading-relaxed mb-3">Gamified learning significantly improves students' on-task behaviour vs. passive instruction.</p>
+        <div class="text-xs font-bold text-blue-400 uppercase tracking-wide">Frontiers in Education, 2024</div>
       </div>
-      <div class="font-lilita text-2xl text-purple-400 text-right">96.9%</div>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Positive Learning Response</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Students showed improved outcomes when smartboard gamification was introduced in the classroom.</p>
-    <div class="text-xs font-bold text-purple-400/60 uppercase tracking-wide">JIV Research, 2024</div>
-  </div> -->
 
-  <div class="glass rounded-2xl p-6 border border-blue-400/15 hover:border-blue-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-blue-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-eye text-blue-400 text-sm"></i>
+      <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:border-emerald-300 transition-all group card-shadow">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+            <i class="fas fa-users text-emerald-600 text-sm"></i>
+          </div>
+          <div class="font-lilita text-2xl text-emerald-600 text-right">↑ Social</div>
+        </div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-2">Peer Collaboration</div>
+        <p class="text-stone-400 text-xs font-semibold leading-relaxed mb-3">Team-based games improve communication and cooperation — skills traditional methods rarely develop.</p>
+        <div class="text-xs font-bold text-emerald-500 uppercase tracking-wide">PMC / Frontiers, 2022</div>
       </div>
-      <div class="font-lilita text-2xl text-blue-400 text-right">↑ Focus</div>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Sustained Attention</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Gamified learning significantly improves students' on-task behaviour vs. passive instruction.</p>
-    <div class="text-xs font-bold text-blue-400/60 uppercase tracking-wide">Frontiers in Education, 2024</div>
-  </div>
 
-  <div class="glass rounded-2xl p-6 border border-green-400/15 hover:border-green-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-green-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-users text-green-400 text-sm"></i>
+      <div class="bg-white rounded-2xl p-6 border border-pink-100 hover:border-pink-300 transition-all group card-shadow">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 bg-pink-100 rounded-xl flex items-center justify-center">
+            <i class="fas fa-chart-line text-pink-600 text-sm"></i>
+          </div>
+          <div class="font-lilita text-2xl text-pink-600 text-right">↑ Confidence</div>
+        </div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-2">Critical Thinking</div>
+        <p class="text-stone-400 text-xs font-semibold leading-relaxed mb-3">Students show improved self-perception and confidence in problem-solving in gamified environments.</p>
+        <div class="text-xs font-bold text-pink-400 uppercase tracking-wide">Frontiers in Education, 2023</div>
       </div>
-      <div class="font-lilita text-2xl text-green-400 text-right">↑ Social</div>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Peer Collaboration</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Team-based games improve communication and cooperation — skills traditional methods rarely develop.</p>
-    <div class="text-xs font-bold text-green-400/60 uppercase tracking-wide">PMC / Frontiers, 2022</div>
-  </div>
 
-  <!-- <div class="glass rounded-2xl p-6 border border-amber-400/15 hover:border-amber-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-amber-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-lightbulb text-amber-400 text-sm"></i>
+      <div class="bg-white rounded-2xl p-6 border border-indigo-100 hover:border-indigo-300 transition-all group card-shadow">
+        <div class="flex items-start justify-between mb-4">
+          <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center">
+            <i class="fas fa-tablet-screen-button text-indigo-600 text-sm"></i>
+          </div>
+          <div class="font-lilita text-2xl text-indigo-600 text-right">Proven</div>
+        </div>
+        <div class="font-baloo font-black text-stone-800 text-sm mb-2">Smartboard Underuse</div>
+        <p class="text-stone-400 text-xs font-semibold leading-relaxed mb-3">Teachers showed reluctance to use smartboard technology despite its availability — MindSpark solves this.</p>
+        <div class="text-xs font-bold text-indigo-400 uppercase tracking-wide">Frontiers in Psychology, 2022</div>
       </div>
-      <div class="font-lilita text-2xl text-amber-400 text-right">617</div>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Knowledge Retention</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Longitudinal study of 617 students: gamified learning exceeded standard benchmarks for retention.</p>
-    <div class="text-xs font-bold text-amber-400/60 uppercase tracking-wide">ScienceDirect, 2020</div>
-  </div> -->
 
-  <div class="glass rounded-2xl p-6 border border-pink-400/15 hover:border-pink-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-pink-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-chart-line text-pink-400 text-sm"></i>
-      </div>
-      <div class="font-lilita text-2xl text-pink-400 text-right">↑ Confidence</div>
     </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Critical Thinking</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Students show improved self-perception and confidence in problem-solving in gamified environments.</p>
-    <div class="text-xs font-bold text-pink-400/60 uppercase tracking-wide">Frontiers in Education, 2023</div>
-  </div>
-
-  <div class="glass rounded-2xl p-6 border border-indigo-400/15 hover:border-indigo-400/35 transition-all group">
-    <div class="flex items-start justify-between mb-4">
-      <div class="w-10 h-10 bg-indigo-400/15 rounded-xl flex items-center justify-center">
-        <i class="fas fa-tablet-screen-button text-indigo-400 text-sm"></i>
-      </div>
-      <div class="font-lilita text-2xl text-indigo-400 text-right">Proven</div>
-    </div>
-    <div class="font-baloo font-black text-white text-sm mb-2">Smartboard Underuse</div>
-    <p class="text-white/45 text-xs font-semibold leading-relaxed mb-3">Teachers showed reluctance to use smartboard technology despite its availability — MindSpark solves this.</p>
-    <div class="text-xs font-bold text-indigo-400/60 uppercase tracking-wide">Frontiers in Psychology, 2022</div>
-  </div>
-
-</div>
 
     <!-- Brain visual + quote -->
-    <div class="glass rounded-3xl p-8 md:p-10 border border-white/8 text-center max-w-3xl mx-auto reveal">
+    <div class="bg-white rounded-3xl p-8 md:p-10 border border-amber-200 text-center max-w-3xl mx-auto reveal card-shadow" style="background: linear-gradient(135deg, rgba(254,243,199,0.4), rgba(255,255,255,0.9));">
       <div class="text-5xl mb-4">🧠</div>
-      <blockquote class="font-lilita text-2xl lg:text-3xl text-white mb-4 leading-tight">
+      <blockquote class="font-lilita text-2xl lg:text-3xl text-stone-800 mb-4 leading-tight">
         "Students who never raise their hand were the first ones running to the board."
       </blockquote>
-      <div class="text-white/40 font-bold text-sm">— Primary School Teacher, Ernakulam (Beta Feedback)</div>
+      <div class="text-stone-400 font-bold text-sm">— Primary School Teacher, Ernakulam (Beta Feedback)</div>
     </div>
 
   </div>
@@ -1099,122 +1008,19 @@
 
 
 <!-- ═══════════════════════════════════════════════
-     PRICING
-════════════════════════════════════════════════ -->
-<!-- <section class="relative py-20 overflow-hidden">
-  <div class="blob w-80 h-80 bg-amber-500/8 top-10 right-10"></div>
-
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-    <div class="text-center mb-12 reveal">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 border border-amber-400/20">
-        <i class="fas fa-tag text-amber-400 text-xs"></i>
-        <span class="font-baloo font-black text-amber-400 text-xs tracking-widest uppercase">Simple Pricing</span>
-      </div>
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
-        <span class="text-gradient">₹30,000</span> per School / Year
-      </h2>
-      <p class="text-white/50 font-semibold text-lg">Every teacher. Every game. Every class. Unlimited.</p>
-    </div>
-
-    <div class="rounded-3xl p-8 md:p-12 border border-amber-400/30 reveal" style="background: linear-gradient(135deg, rgba(245,158,11,0.10), rgba(245,158,11,0.04), rgba(6,11,24,0.8));">
-
-    
-      <div class="grid grid-cols-3 gap-4 mb-8 p-6 glass rounded-2xl border border-white/8">
-        <div class="text-center">
-          <div class="font-lilita text-2xl sm:text-3xl text-amber-400 mb-1">₹60</div>
-          <div class="text-white/70 text-xs font-black">Per student/year*</div>
-          <div class="text-white/30 text-xs">*500 students avg</div>
-        </div>
-        <div class="text-center">
-          <div class="font-lilita text-2xl sm:text-3xl text-amber-400 mb-1">₹2,500</div>
-          <div class="text-white/70 text-xs font-black">Per month</div>
-          <div class="text-white/30 text-xs">Flat school rate</div>
-        </div>
-        <div class="text-center">
-          <div class="font-lilita text-2xl sm:text-3xl text-amber-400 mb-1">10+</div>
-          <div class="text-white/70 text-xs font-black">Games included</div>
-          <div class="text-white/30 text-xs">All updates free</div>
-        </div>
-      </div>
-
-      <div class="grid sm:grid-cols-2 gap-3 mb-8 text-left">
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">All 10 games — unlimited sessions</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">All subjects, all class levels (1–8)</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">Teacher app for custom question packs</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">School-wide question library</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">Offline-first — no wifi during class</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">New games added regularly</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">Email & WhatsApp support</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-5 h-5 bg-amber-400/20 border border-amber-400/40 rounded-full flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-check text-amber-400" style="font-size: 8px;"></i>
-          </div>
-          <span class="text-white/70 text-sm font-semibold">Free classroom demo visit</span>
-        </div>
-      </div>
-
-      <a href="#contact" class="btn-shimmer text-navy font-baloo font-black px-10 py-4 rounded-2xl inline-flex items-center gap-3 text-lg">
-        <i class="fas fa-calendar-check"></i>
-        Book a Free Demo
-      </a>
-
-      <p class="text-white/30 text-xs font-semibold mt-4">We visit your school, run a live game session with one class — completely free.</p>
-    </div>
-
-  </div>
-</section> -->
-
-
-<!-- ═══════════════════════════════════════════════
      CONTACT
 ════════════════════════════════════════════════ -->
 <section class="relative py-20 overflow-hidden" id="contact">
-  <div class="blob w-96 h-96 bg-blue-500/6 bottom-0 left-20"></div>
+  <div class="blob w-96 h-96 bg-blue-300/10 bottom-0 left-20"></div>
 
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-14 reveal">
-      <h2 class="font-lilita text-4xl lg:text-5xl mb-4">
+      <h2 class="font-lilita text-4xl lg:text-5xl mb-4 text-stone-900">
         Let's Bring <span class="text-gradient">MindSpark</span><br/>
         to Your School
       </h2>
-      <p class="text-white/50 font-semibold text-lg max-w-xl mx-auto">
+      <p class="text-stone-500 font-semibold text-lg max-w-xl mx-auto">
         The smartboard is already there. The students are already waiting. We'll take care of the rest.
       </p>
     </div>
@@ -1225,128 +1031,121 @@
       <div class="flex flex-col gap-6">
 
         <!-- Person card -->
-        <div class="glass rounded-3xl p-8 border border-white/8">
-          <!-- IMAGE PLACEHOLDER: Friendly headshot of educator/founder. Professional but approachable. -->
-          <img src="Ayisha.jpeg" alt="">
-
-          <div class="font-lilita text-2xl mb-1">Ayisha Kabeer</div>
-          <div class="text-amber-400 font-bold text-sm mb-6">Founder, MindSpark</div>
+        <div class="bg-white rounded-3xl p-8 border border-stone-100 card-shadow">
+          <img src="Ayisha.jpeg" alt="" class="rounded-2xl mb-4 w-full">
+          <div class="font-lilita text-2xl mb-1 text-stone-900">Ayisha Kabeer</div>
+          <div class="text-amber-600 font-bold text-sm mb-6">Founder, MindSpark</div>
 
           <div class="flex flex-col gap-4">
             <a href="mailto:ayishakabeer77@gmail.com" class="flex items-center gap-4 group">
-              <div class="w-10 h-10 bg-amber-400/15 rounded-xl flex items-center justify-center group-hover:bg-amber-400/25 transition-colors flex-shrink-0">
-                <i class="fas fa-envelope text-amber-400 text-sm"></i>
+              <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center group-hover:bg-amber-200 transition-colors flex-shrink-0">
+                <i class="fas fa-envelope text-amber-600 text-sm"></i>
               </div>
               <div>
-                <div class="text-white/40 text-xs font-bold uppercase tracking-wide">Email</div>
-                <div class="text-white font-bold text-sm group-hover:text-amber-400 transition-colors">ayishakabeer77@gmail.com</div>
+                <div class="text-stone-400 text-xs font-bold uppercase tracking-wide">Email</div>
+                <div class="text-stone-700 font-bold text-sm group-hover:text-amber-600 transition-colors">ayishakabeer77@gmail.com</div>
               </div>
             </a>
 
             <a href="tel:+919645216809" class="flex items-center gap-4 group">
-              <div class="w-10 h-10 bg-green-400/15 rounded-xl flex items-center justify-center group-hover:bg-green-400/25 transition-colors flex-shrink-0">
-                <i class="fas fa-phone text-green-400 text-sm"></i>
+              <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:bg-emerald-200 transition-colors flex-shrink-0">
+                <i class="fas fa-phone text-emerald-600 text-sm"></i>
               </div>
               <div>
-                <div class="text-white/40 text-xs font-bold uppercase tracking-wide">Phone / WhatsApp</div>
-                <div class="text-white font-bold text-sm group-hover:text-green-400 transition-colors">+91 96452 16809</div>
+                <div class="text-stone-400 text-xs font-bold uppercase tracking-wide">Phone / WhatsApp</div>
+                <div class="text-stone-700 font-bold text-sm group-hover:text-emerald-600 transition-colors">+91 96452 16809</div>
               </div>
             </a>
 
             <a href="https://wa.me/919645216809" class="flex items-center gap-4 group">
-              <div class="w-10 h-10 bg-green-500/15 rounded-xl flex items-center justify-center group-hover:bg-green-500/25 transition-colors flex-shrink-0">
-                <i class="fab fa-whatsapp text-green-500 text-sm"></i>
+              <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-green-200 transition-colors flex-shrink-0">
+                <i class="fab fa-whatsapp text-green-600 text-sm"></i>
               </div>
               <div>
-                <div class="text-white/40 text-xs font-bold uppercase tracking-wide">WhatsApp</div>
-                <div class="text-white font-bold text-sm group-hover:text-green-400 transition-colors">Chat with us →</div>
+                <div class="text-stone-400 text-xs font-bold uppercase tracking-wide">WhatsApp</div>
+                <div class="text-stone-700 font-bold text-sm group-hover:text-green-600 transition-colors">Chat with us →</div>
               </div>
             </a>
           </div>
         </div>
 
         <!-- What happens next -->
-       <div class="glass rounded-3xl p-6 border border-white/8">
-  <div class="font-baloo font-black text-white/60 text-xs uppercase tracking-widest mb-4">What Happens Next</div>
-  <div class="flex flex-col gap-3">
-
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 bg-amber-400/15 rounded-lg flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-phone text-amber-400 text-xs"></i>
-      </div>
-      <span class="text-white/60 text-sm font-semibold">We call within 24 hours</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 bg-blue-400/15 rounded-lg flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-school text-blue-400 text-xs"></i>
-      </div>
-      <span class="text-white/60 text-sm font-semibold">Schedule a free visit to your school</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 bg-green-400/15 rounded-lg flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-play text-green-400 text-xs"></i>
-      </div>
-      <span class="text-white/60 text-sm font-semibold">Live demo with one class — no pressure</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 bg-pink-400/15 rounded-lg flex items-center justify-center flex-shrink-0">
-        <i class="fas fa-handshake text-pink-400 text-xs"></i>
-      </div>
-      <span class="text-white/60 text-sm font-semibold">You decide if it's right for you</span>
-    </div>
-
-  </div>
-</div>
+        <div class="bg-white rounded-3xl p-6 border border-stone-100 card-shadow">
+          <div class="font-baloo font-black text-stone-400 text-xs uppercase tracking-widest mb-4">What Happens Next</div>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-phone text-amber-600 text-xs"></i>
+              </div>
+              <span class="text-stone-500 text-sm font-semibold">We call within 24 hours</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-school text-blue-600 text-xs"></i>
+              </div>
+              <span class="text-stone-500 text-sm font-semibold">Schedule a free visit to your school</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-play text-emerald-600 text-xs"></i>
+              </div>
+              <span class="text-stone-500 text-sm font-semibold">Live demo with one class — no pressure</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-handshake text-pink-600 text-xs"></i>
+              </div>
+              <span class="text-stone-500 text-sm font-semibold">You decide if it's right for you</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Contact form -->
-      <div class="glass rounded-3xl p-8 border border-amber-400/20">
-        <h3 class="font-lilita text-2xl mb-6">Request a Demo</h3>
+      <div class="bg-white rounded-3xl p-8 border border-amber-200 card-shadow" style="background: linear-gradient(135deg, rgba(254,243,199,0.3), rgba(255,255,255,0.95));">
+        <h3 class="font-lilita text-2xl mb-6 text-stone-900">Request a Demo</h3>
 
         <form class="flex flex-col gap-4" onsubmit="handleSubmit(event)">
           <div>
-            <label class="text-white/50 text-xs font-black uppercase tracking-widest block mb-2">School Name</label>
+            <label class="text-stone-400 text-xs font-black uppercase tracking-widest block mb-2">School Name</label>
             <input type="text" placeholder="St. Mary's Higher Secondary School" required
-              class="w-full glass rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder-white/20 border border-white/10 focus:border-amber-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400/30 transition-all bg-transparent" />
+              class="w-full bg-stone-50 rounded-xl px-4 py-3 text-stone-800 text-sm font-semibold placeholder-stone-300 border border-stone-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all" />
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="text-white/50 text-xs font-black uppercase tracking-widest block mb-2">Your Name</label>
+              <label class="text-stone-400 text-xs font-black uppercase tracking-widest block mb-2">Your Name</label>
               <input type="text" placeholder="Principal / Teacher" required
-                class="w-full glass rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder-white/20 border border-white/10 focus:border-amber-400/50 focus:outline-none transition-all bg-transparent" />
+                class="w-full bg-stone-50 rounded-xl px-4 py-3 text-stone-800 text-sm font-semibold placeholder-stone-300 border border-stone-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all" />
             </div>
             <div>
-              <label class="text-white/50 text-xs font-black uppercase tracking-widest block mb-2">Phone</label>
+              <label class="text-stone-400 text-xs font-black uppercase tracking-widest block mb-2">Phone</label>
               <input type="tel" placeholder="+91 XXXXX XXXXX" required
-                class="w-full glass rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder-white/20 border border-white/10 focus:border-amber-400/50 focus:outline-none transition-all bg-transparent" />
+                class="w-full bg-stone-50 rounded-xl px-4 py-3 text-stone-800 text-sm font-semibold placeholder-stone-300 border border-stone-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all" />
             </div>
           </div>
 
           <div>
-            <label class="text-white/50 text-xs font-black uppercase tracking-widest block mb-2">District / City</label>
-            <input type="text" placeholder="e.g. Ernakulam, Kerala" 
-              class="w-full glass rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder-white/20 border border-white/10 focus:border-amber-400/50 focus:outline-none transition-all bg-transparent" />
+            <label class="text-stone-400 text-xs font-black uppercase tracking-widest block mb-2">District / City</label>
+            <input type="text" placeholder="e.g. Ernakulam, Kerala"
+              class="w-full bg-stone-50 rounded-xl px-4 py-3 text-stone-800 text-sm font-semibold placeholder-stone-300 border border-stone-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all" />
           </div>
 
           <div>
-            <label class="text-white/50 text-xs font-black uppercase tracking-widest block mb-2">Message (Optional)</label>
+            <label class="text-stone-400 text-xs font-black uppercase tracking-widest block mb-2">Message (Optional)</label>
             <textarea rows="3" placeholder="Any questions or specific requirements..."
-              class="w-full glass rounded-xl px-4 py-3 text-white text-sm font-semibold placeholder-white/20 border border-white/10 focus:border-amber-400/50 focus:outline-none transition-all bg-transparent resize-none"></textarea>
+              class="w-full bg-stone-50 rounded-xl px-4 py-3 text-stone-800 text-sm font-semibold placeholder-stone-300 border border-stone-200 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-200 transition-all resize-none"></textarea>
           </div>
 
-          <button type="submit" class="btn-shimmer text-navy font-baloo font-black py-4 rounded-2xl flex items-center justify-center gap-3 text-base">
+          <button type="submit" class="btn-shimmer text-white font-baloo font-black py-4 rounded-2xl flex items-center justify-center gap-3 text-base">
             <i class="fas fa-paper-plane"></i>
             Send Request
           </button>
         </form>
 
-        <div id="successMsg" class="hidden mt-4 glass rounded-xl p-4 border border-green-400/30 text-center">
+        <div id="successMsg" class="hidden mt-4 bg-emerald-50 rounded-xl p-4 border border-emerald-200 text-center">
           <div class="text-2xl mb-2">🎉</div>
-          <div class="font-baloo font-black text-green-400 text-sm">Request sent! We'll be in touch within 24 hours.</div>
+          <div class="font-baloo font-black text-emerald-700 text-sm">Request sent! We'll be in touch within 24 hours.</div>
         </div>
       </div>
 
@@ -1358,49 +1157,47 @@
 <!-- ═══════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════════ -->
-<footer class="border-t border-white/5 py-12">
+<footer class="border-t border-stone-200 py-12 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 
       <!-- Logo + tagline -->
       <div class="flex flex-col items-center md:items-start gap-2">
         <div class="flex items-center gap-3">
-          <!-- LOGO PLACEHOLDER -->
-          <div class="  flex items-center justify-center">
+          <div class="flex items-center justify-center">
             <img src="logo.png" width="190px" alt="">
           </div>
-          
         </div>
-        <p class="text-white/30 text-xs font-semibold">Made in Kerala · For every classroom in India</p>
+        <p class="text-stone-400 text-xs font-semibold">Made in Kerala · For every classroom in India</p>
       </div>
 
       <!-- Links -->
-      <div class="flex items-center gap-6 text-white/40 text-sm font-bold">
-        <a href="#about"    class="hover:text-amber-400 transition-colors">About</a>
-        <a href="#games"    class="hover:text-amber-400 transition-colors">Games</a>
-        <a href="#features" class="hover:text-amber-400 transition-colors">Features</a>
-        <a href="#contact"  class="hover:text-amber-400 transition-colors">Contact</a>
+      <div class="flex items-center gap-6 text-stone-400 text-sm font-bold">
+        <a href="#about"    class="hover:text-amber-600 transition-colors">About</a>
+        <a href="#games"    class="hover:text-amber-600 transition-colors">Games</a>
+        <a href="#features" class="hover:text-amber-600 transition-colors">Features</a>
+        <a href="#contact"  class="hover:text-amber-600 transition-colors">Contact</a>
       </div>
 
       <!-- Contact shortcuts -->
       <div class="flex items-center gap-3">
         <a href="mailto:ayishakabeer77@gmail.com"
-          class="w-9 h-9 glass rounded-xl flex items-center justify-center border border-white/10 hover:border-amber-400/40 hover:text-amber-400 text-white/50 transition-all">
+          class="w-9 h-9 bg-stone-50 rounded-xl flex items-center justify-center border border-stone-200 hover:border-amber-300 hover:text-amber-600 text-stone-400 transition-all">
           <i class="fas fa-envelope text-xs"></i>
         </a>
         <a href="https://wa.me/919645216809"
-          class="w-9 h-9 glass rounded-xl flex items-center justify-center border border-white/10 hover:border-green-400/40 hover:text-green-400 text-white/50 transition-all">
+          class="w-9 h-9 bg-stone-50 rounded-xl flex items-center justify-center border border-stone-200 hover:border-green-300 hover:text-green-600 text-stone-400 transition-all">
           <i class="fab fa-whatsapp text-sm"></i>
         </a>
         <a href="tel:+919645216809"
-          class="w-9 h-9 glass rounded-xl flex items-center justify-center border border-white/10 hover:border-blue-400/40 hover:text-blue-400 text-white/50 transition-all">
+          class="w-9 h-9 bg-stone-50 rounded-xl flex items-center justify-center border border-stone-200 hover:border-blue-300 hover:text-blue-600 text-stone-400 transition-all">
           <i class="fas fa-phone text-xs"></i>
         </a>
       </div>
     </div>
 
-    <div class="border-t border-white/5 mt-8 pt-6 text-center">
-      <p class="text-white/20 text-xs font-semibold">© 2025 MindSpark. All rights reserved. · Ayisha Kabeer · ayishakabeer77@gmail.com · +91 96452 16809</p>
+    <div class="border-t border-stone-100 mt-8 pt-6 text-center">
+      <p class="text-stone-300 text-xs font-semibold">© 2025 MindSpark. All rights reserved. · Ayisha Kabeer · ayishakabeer77@gmail.com · +91 96452 16809</p>
     </div>
   </div>
 </footer>
@@ -1423,7 +1220,6 @@
   menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
-  // Close on link click
   mobileMenu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
   });
@@ -1432,7 +1228,7 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-      navbar.style.boxShadow = '0 8px 40px rgba(0,0,0,0.4)';
+      navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
     } else {
       navbar.style.boxShadow = 'none';
     }
@@ -1450,7 +1246,7 @@
   // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.classList.add('visible');
